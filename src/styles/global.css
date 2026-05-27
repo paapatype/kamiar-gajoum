@@ -415,61 +415,50 @@ a { color: inherit; text-decoration: none; }
 .enter-bar .enter-btn:hover { opacity: 0.85; }
 .enter-bar .enter-btn:hover .arrow { transform: translate(2px, -1px); transition: transform .25s ease; }
 
-/* Lightbox — click a detail painting to open. The painting animates into
-   the center; everything else is dimmed; only the painting + name + close
-   button remain visible. */
+/* Lightbox — click a detail painting to open. Painting is centered at its
+   natural brightness; everything else fades to a deep dim wash; only the
+   close button (top-right) and the painting are visible. */
 .lightbox {
   position: fixed; inset: 0;
   z-index: 100;
-  background: rgba(8, 8, 8, 0.92);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 22px;
-  padding: 80px clamp(24px, 4vw, 64px) 48px;
+  background: rgba(8, 8, 8, 0.94);
+  display: flex; align-items: center; justify-content: center;
+  padding: 60px clamp(24px, 4vw, 64px);
   animation: lightboxFade .35s ease both;
   cursor: zoom-out;
 }
 @keyframes lightboxFade {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 .lightbox-close {
-  position: fixed; top: 22px; right: 28px;
-  width: 36px; height: 36px;
+  position: absolute; top: 22px; right: 28px;
+  width: 40px; height: 40px;
   display: inline-flex; align-items: center; justify-content: center;
   background: none; border: 0;
   color: #fff;
-  font-size: 28px;
+  font-size: 30px;
   line-height: 1;
   cursor: pointer;
-  opacity: 0.85;
+  opacity: 0.9;
   transition: opacity .2s ease, transform .2s ease;
+  z-index: 1;
 }
-.lightbox-close:hover { opacity: 1; transform: scale(1.08); }
-.lightbox-content {
-  display: flex; flex-direction: column; align-items: center;
-  gap: 18px;
+.lightbox-close:hover { opacity: 1; transform: scale(1.1); }
+.lightbox-img {
   max-width: 92vw;
+  max-height: 88vh;
+  width: auto; height: auto;
+  object-fit: contain;
+  display: block;
   cursor: default;
-  animation: lightboxRise .55s cubic-bezier(.22,.61,.36,1) both;
+  /* Painting stays at full natural brightness — no filters, no overlay. */
+  filter: none;
+  animation: lightboxRise .55s cubic-bezier(.22, .61, .36, 1) both;
 }
 @keyframes lightboxRise {
   from { transform: scale(0.94); opacity: 0; }
   to   { transform: scale(1);    opacity: 1; }
-}
-.lightbox-content img {
-  max-width: 92vw;
-  max-height: 78vh;
-  object-fit: contain;
-  display: block;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
-}
-.lightbox-title {
-  font-family: var(--sans);
-  font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  color: #f3f3f3;
 }
 
 /* Page transitions */
@@ -498,10 +487,16 @@ a { color: inherit; text-decoration: none; }
   gap: 1px;
   background: #ececec;
   transition:
-    grid-template-columns 1.4s cubic-bezier(.22, .61, .36, 1),
+    grid-template-columns 1.6s cubic-bezier(.22, .61, .36, 1),
     opacity .5s ease,
     filter .5s ease;
   opacity: 1;
+}
+/* 1-col mode: keep painting from filling the whole viewport — center within
+   a comfortable max-width so it doesn't sprawl. */
+.gallery[data-cols="1"] {
+  max-width: 880px;
+  margin: 0 auto;
 }
 .gallery .card {
   background: #ffffff;
@@ -510,6 +505,13 @@ a { color: inherit; text-decoration: none; }
   container-type: inline-size;
   transition: transform .9s cubic-bezier(.22,.61,.36,1);
 }
+
+/* When the trailing row has a single card that would leave an empty grey
+   cell to its right, span it across all columns so the painting is centered
+   and no orphan grey box appears. */
+.gallery[data-cols="2"] .card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.gallery[data-cols="3"] .card:last-child:nth-child(3n+1) { grid-column: 1 / -1; }
+.gallery[data-cols="4"] .card:last-child:nth-child(4n+1) { grid-column: 1 / -1; }
 
 /* Filter fade-to-white: gallery opacity goes to 0 with a soft blur. React
    swaps the rendered paintings mid-fade so the in-and-out cycle reads as a
@@ -759,6 +761,18 @@ a { color: inherit; text-decoration: none; }
   transition: transform .8s cubic-bezier(.22,.61,.36,1);
 }
 .more-gallery .more-card:hover .more-image-wrap img { transform: scale(1.02); }
+.more-gallery .more-pill {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.01em;
+  padding: 3px 14px;
+  border: 1px solid #ececec;
+  border-radius: 100px;
+  color: #a8a8a8;
+  background: #fff;
+}
+.more-gallery .more-pill.sold { color: #b03a2e; border-color: #f0dcd9; }
 .more-gallery .more-title {
   font-family: var(--sans);
   font-weight: 400;
@@ -1183,9 +1197,8 @@ a { color: inherit; text-decoration: none; }
   .mobile-only  { display: block; }
   .desktop-only { display: none; }
 
-  /* Lightbox: image takes a touch less height on mobile to leave room for
-     the close button + title on smaller phones. */
-  .lightbox-content img { max-height: 70vh; }
+  /* Lightbox: leave a touch more room for the close button on small phones. */
+  .lightbox-img { max-height: 82vh; }
 
   .site-footer {
     grid-template-columns: 1fr;

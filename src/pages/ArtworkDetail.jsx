@@ -112,14 +112,18 @@ export default function ArtworkDetail({ onOpenMenu }) {
       {moreFromGallery.length > 0 && (
         <section className="more-gallery">
           <div className="more-gallery-grid">
-            {moreFromGallery.map(a => (
-              <Link to={`/work/${a.slug}`} className="more-card" key={a.id}>
-                <div className="more-image-wrap">
-                  <img src={a.image} alt={a.title} loading="lazy" />
-                </div>
-                <span className="more-title">{a.title}</span>
-              </Link>
-            ))}
+            {moreFromGallery.map(a => {
+              const aSold = a.availability.toLowerCase() === 'sold';
+              return (
+                <Link to={`/work/${a.slug}`} className="more-card" key={a.id}>
+                  <div className="more-image-wrap">
+                    <img src={a.image} alt={a.title} loading="lazy" />
+                  </div>
+                  <span className={`more-pill ${aSold ? 'sold' : ''}`}>{a.availability}</span>
+                  <span className="more-title">{a.title}</span>
+                </Link>
+              );
+            })}
           </div>
           <div className="more-actions">
             <Link
@@ -150,10 +154,12 @@ export default function ArtworkDetail({ onOpenMenu }) {
           >
             ×
           </button>
-          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <img src={artwork.image} alt={artwork.title} />
-            <div className="lightbox-title">{artwork.title}</div>
-          </div>
+          <img
+            className="lightbox-img"
+            src={artwork.image}
+            alt={artwork.title}
+            onClick={(e) => e.stopPropagation()}
+          />
         </div>
       )}
     </div>

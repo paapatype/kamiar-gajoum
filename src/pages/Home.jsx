@@ -71,6 +71,7 @@ export default function Home({ onOpenMenu }) {
       <main className="gallery-wrap">
       <div
         className={`gallery ${isReflowing ? 'reflowing' : ''} ${filterFading ? 'filter-fading' : ''}`}
+        data-cols={cols}
         style={{ ['--cols']: cols }}
       >
         {items.map((a, i) => {

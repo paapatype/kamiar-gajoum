@@ -6,7 +6,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const STOPS = [2, 3, 4];
+const STOPS = [1, 2, 3, 4];
 
 export default function DensitySlider({ value, onChange, onDragChange }) {
   const lastIndex = STOPS.length - 1;
