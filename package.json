@@ -1,0 +1,25 @@
+{
+  "name": "kamiar-gajoum-site",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "data": "node scripts/build-artwork-data.mjs",
+    "dev": "npm run data && vite",
+    "build": "vite build",
+    "build:full": "npm run data && vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist -t true"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "gh-pages": "^6.1.1",
+    "vite": "^5.4.8",
+    "xlsx": "^0.18.5"
+  }
+}
