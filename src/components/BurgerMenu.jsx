@@ -32,6 +32,8 @@ export default function BurgerMenu({ open, onClose }) {
         </div>
         <nav>
           <Link to="/home">Gallery</Link>
+          <Link to="/travel">Travel</Link>
+          <Link to="/exhibitions">Exhibitions</Link>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
         </nav>

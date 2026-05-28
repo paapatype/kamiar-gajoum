@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
@@ -139,28 +140,31 @@ export default function ArtworkDetail({ onOpenMenu }) {
 
       <Footer onOpenMenu={onOpenMenu} currentFilter={artwork.category} />
 
-      {lightboxOpen && (
-        <div
-          className="lightbox"
-          role="dialog"
-          aria-modal="true"
-          aria-label={artwork.title}
-          onClick={() => setLightboxOpen(false)}
-        >
-          <button
-            className="lightbox-close"
-            onClick={(e) => { e.stopPropagation(); setLightboxOpen(false); }}
-            aria-label="Close"
+      {lightboxOpen && createPortal(
+        (
+          <div
+            className="lightbox"
+            role="dialog"
+            aria-modal="true"
+            aria-label={artwork.title}
+            onClick={() => setLightboxOpen(false)}
           >
-            ×
-          </button>
-          <img
-            className="lightbox-img"
-            src={artwork.image}
-            alt={artwork.title}
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
+            <button
+              className="lightbox-close"
+              onClick={(e) => { e.stopPropagation(); setLightboxOpen(false); }}
+              aria-label="Close"
+            >
+              ×
+            </button>
+            <img
+              className="lightbox-img"
+              src={artwork.image}
+              alt={artwork.title}
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        ),
+        document.body,
       )}
     </div>
   );

@@ -1,0 +1,99 @@
+{
+  "galleries": [
+    {
+      "gallery": "Vancouver Fine Art Gallery",
+      "location": "Vancouver, BC, Canada",
+      "logo": "galleries/vancouver-fine-art-gallery.png",
+      "years": [
+        "2021",
+        "2022",
+        "2023"
+      ],
+      "note": "Permanent representation — recurring solo and group exhibitions across three consecutive years."
+    },
+    {
+      "gallery": "Japan Creative Arts Gallery",
+      "location": "Tokyo, Japan",
+      "logo": null,
+      "years": [
+        "2020"
+      ],
+      "note": "A featured exhibition introducing the work to collectors in Japan."
+    },
+    {
+      "gallery": "Le Soleil Gallery",
+      "location": "Canada",
+      "logo": null,
+      "years": [
+        "2017"
+      ],
+      "note": "A solo showing of European and live-painted street scenes."
+    }
+  ],
+  "photos": [
+    {
+      "src": "exhibitions/kamiar-s-exhibition-at-le-soleil-gallery.jpg",
+      "caption": "Le Soleil Gallery"
+    },
+    {
+      "src": "exhibitions/exibition-in-calgary.jpeg",
+      "caption": "Calgary, AB"
+    },
+    {
+      "src": "exhibitions/exhibition-in-whislter.jpg",
+      "caption": "Whistler, BC"
+    },
+    {
+      "src": "exhibitions/exhibition-in-bc.jpg",
+      "caption": "British Columbia"
+    },
+    {
+      "src": "exhibitions/window-disply.jpg",
+      "caption": "Gallery window"
+    },
+    {
+      "src": "exhibitions/dsc-0231.jpg",
+      "caption": ""
+    },
+    {
+      "src": "exhibitions/dsc-0241.jpg",
+      "caption": ""
+    },
+    {
+      "src": "exhibitions/dsc-0248.jpg",
+      "caption": ""
+    },
+    {
+      "src": "exhibitions/dsc-0291.jpg",
+      "caption": ""
+    },
+    {
+      "src": "exhibitions/dsc-0375.jpg",
+      "caption": ""
+    },
+    {
+      "src": "exhibitions/dsc-0377.jpg",
+      "caption": ""
+    },
+    {
+      "src": "exhibitions/dsc-0385.jpg",
+      "caption": ""
+    },
+    {
+      "src": "exhibitions/dsc-0413.jpg",
+      "caption": ""
+    },
+    {
+      "src": "exhibitions/img-0383.jpg",
+      "caption": ""
+    },
+    {
+      "src": "exhibitions/img-0452.jpg",
+      "caption": ""
+    },
+    {
+      "src": "exhibitions/img-0465.jpeg",
+      "caption": ""
+    }
+  ]
+}

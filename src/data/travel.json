@@ -1,0 +1,132 @@
+{
+  "hero": "travel/kamiar-steps-into-classice-impressionism-art.jpg",
+  "regions": [
+    {
+      "region": "Canada",
+      "text": "Based in Vancouver, Kamiar has captured the alpine spirit of Whistler, the historic charm of Victoria, and the rhythmic urban energy of Toronto, Montreal, and Quebec City.",
+      "images": [
+        {
+          "src": "travel/live-painting-in-vancouver.jpg",
+          "place": "Vancouver"
+        },
+        {
+          "src": "travel/live-painting-water-street.jpg",
+          "place": "Water Street, Vancouver"
+        }
+      ]
+    },
+    {
+      "region": "United Kingdom",
+      "text": "Observational studies of London and St Albans, alongside the serene, atmospheric landscapes of Carlisle and the Lake District.",
+      "images": [
+        {
+          "src": "travel/sketching-in-london.jpg",
+          "place": "London"
+        },
+        {
+          "src": "travel/sketching-piccadilly-cricus-london.jpeg",
+          "place": "Piccadilly Circus, London"
+        }
+      ]
+    },
+    {
+      "region": "France",
+      "text": "A mastery of light and color developed through extensive work in Paris, Trouville-sur-Mer, Nice, Cannes, Saint-Paul-de-Vence, and Villefranche-sur-Mer.",
+      "images": [
+        {
+          "src": "travel/cafe-de-flore-paris.jpg",
+          "place": "Café de Flore, Paris"
+        },
+        {
+          "src": "travel/cafe-de-la-paix-paris.jpg",
+          "place": "Café de la Paix, Paris"
+        },
+        {
+          "src": "travel/sketching-cafe-de-flore.jpg",
+          "place": "Café de Flore, Paris"
+        },
+        {
+          "src": "travel/studying-cafe-treace-ambience.jpg",
+          "place": "Café Terrace, Paris"
+        },
+        {
+          "src": "travel/skeching-in-paris.jpg",
+          "place": "Paris"
+        },
+        {
+          "src": "travel/sketching-nortre-dame-de-paris.jpg",
+          "place": "Notre-Dame, Paris"
+        },
+        {
+          "src": "travel/live-sketching-nortre-dame-de-paris.jpg",
+          "place": "Notre-Dame, Paris"
+        },
+        {
+          "src": "travel/live-pastel-work-nice-france.jpg",
+          "place": "Nice"
+        },
+        {
+          "src": "travel/working-from-nice-france.jpg",
+          "place": "Nice"
+        },
+        {
+          "src": "travel/live-sketching-in-cote-d-aur.jpg",
+          "place": "Côte d'Azur"
+        },
+        {
+          "src": "travel/working-live-french-riviera.jpg",
+          "place": "French Riviera"
+        }
+      ]
+    },
+    {
+      "region": "United States",
+      "text": "Live-sketching the neon pulse of New York City and the soulful, textured streets of Miami and New Orleans.",
+      "images": [
+        {
+          "src": "travel/live-sketching-nyc.jpg",
+          "place": "New York City"
+        }
+      ]
+    },
+    {
+      "region": "Europe & The Mediterranean",
+      "text": "Translating the timeless elegance of Rome, Venice, Barcelona, Madrid, Monaco, and Malta.",
+      "images": [
+        {
+          "src": "travel/live-painting-in-venice.jpg",
+          "place": "Venice"
+        },
+        {
+          "src": "travel/live-sketching-st-mark-s-square.jpg",
+          "place": "St Mark's Square, Venice"
+        },
+        {
+          "src": "travel/sketching-piazza-san-marco-venice.jpg",
+          "place": "Piazza San Marco, Venice"
+        },
+        {
+          "src": "travel/sketching-piazza-san-marco.jpg",
+          "place": "Piazza San Marco, Venice"
+        },
+        {
+          "src": "travel/sketching-carneval-di-venezia.jpg",
+          "place": "Carnevale di Venezia"
+        },
+        {
+          "src": "travel/sketching-monte-carlo-s-architecture.jpg",
+          "place": "Monte-Carlo"
+        },
+        {
+          "src": "travel/studying-mdina-malta.jpg",
+          "place": "Mdina, Malta"
+        }
+      ]
+    },
+    {
+      "region": "Asia & Africa",
+      "text": "Bridging cultures through sketches of the traditional temples of Tokyo and Kyoto, the rich textures of Tunisia and Morocco, and the historic crossroads of Istanbul.",
+      "images": []
+    }
+  ]
+}

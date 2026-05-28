@@ -98,6 +98,22 @@ a { color: inherit; text-decoration: none; }
   padding: var(--header-pad-y) var(--header-pad-x);
   border-bottom: 1px solid transparent;
 }
+/* Thin soft-fade band right at the header's bottom edge. Content stays crisp
+   until it scrolls up across the line, where it dissolves over a short
+   distance. Kept shallow with a light blur so there's no persistent glow. */
+.site-header::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 100%;
+  height: 34px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  -webkit-backdrop-filter: blur(1.5px);
+  backdrop-filter: blur(1.5px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0) 100%);
+}
 .site-header .logo {
   font-family: var(--serif);
   font-size: var(--wordmark-size);
@@ -461,13 +477,15 @@ a { color: inherit; text-decoration: none; }
   to   { transform: scale(1);    opacity: 1; }
 }
 
-/* Page transitions */
+/* Page transitions — opacity only. (Avoid a lingering transform on .page,
+   which would make position:fixed descendants like the lightbox resolve
+   against .page instead of the viewport.) */
 .fade-enter {
   animation: fadeIn .6s ease both;
 }
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* Outer wrapper handles page padding + max-width centering so the gallery
@@ -911,7 +929,7 @@ a { color: inherit; text-decoration: none; }
   max-width: 640px;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #f2f2f2;
+  background: #ffffff;
 }
 .about-portrait img {
   width: 100%;
@@ -928,6 +946,247 @@ a { color: inherit; text-decoration: none; }
   color: #2b2b2b;
 }
 .about-body p { margin: 0 0 18px; }
+
+/* Travel Studies page */
+.travel-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 96px) var(--pad-x) 40px;
+}
+.travel-intro {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto clamp(40px, 5vw, 72px);
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+}
+.travel-intro .eyebrow { text-align: center; }
+.travel-title {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(34px, 4.4vw, 56px);
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin: 0;
+}
+.travel-lede {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.85;
+  color: #2b2b2b;
+  margin: 0;
+}
+.travel-hero {
+  margin: 0 0 clamp(56px, 7vw, 110px);
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #ffffff;
+}
+.travel-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Each region: a heading + descriptive paragraph (Jost), then its photos. */
+.travel-region {
+  margin-bottom: clamp(64px, 8vw, 120px);
+}
+.travel-region-head {
+  max-width: 720px;
+  margin: 0 auto clamp(32px, 4vw, 56px);
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.travel-region-name {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(22px, 2.4vw, 30px);
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin: 0;
+}
+.travel-region-text {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #555;
+  margin: 0;
+}
+.travel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(28px, 3.5vw, 56px);
+}
+.travel-figure {
+  margin: 0;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.travel-image-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #ffffff;
+}
+.travel-image-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .9s cubic-bezier(.22,.61,.36,1);
+}
+.travel-figure:hover .travel-image-wrap img { transform: scale(1.03); }
+.travel-place {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+/* Exhibitions page */
+.exhibitions-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 96px) var(--pad-x) 40px;
+}
+.exhibitions-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto clamp(48px, 6vw, 88px);
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+}
+.exhibitions-intro .eyebrow { text-align: center; }
+.exhibitions-title {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(34px, 4.4vw, 56px);
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin: 0;
+}
+.exhibitions-lede {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.85;
+  color: #2b2b2b;
+  margin: 0;
+}
+
+/* Gallery cards — one per gallery, with the years it hosted Kamiar shown as
+   chips. This is the "smart" grouping: a venue that hosted across multiple
+   years reads as a single ongoing relationship, not blank year rows. */
+.gallery-list {
+  display: flex; flex-direction: column;
+  gap: 1px;
+  background: #ececec;
+  border-top: 1px solid #ececec;
+  border-bottom: 1px solid #ececec;
+  margin-bottom: clamp(64px, 8vw, 110px);
+}
+.gallery-card {
+  background: #fff;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  align-items: center;
+  gap: clamp(28px, 4vw, 64px);
+  padding: clamp(32px, 4vw, 56px) clamp(20px, 3vw, 40px);
+}
+.gallery-card-head {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 84px;
+}
+.gallery-logo {
+  max-width: 240px;
+  max-height: 90px;
+  width: auto; height: auto;
+  object-fit: contain;
+}
+.gallery-logo-fallback {
+  font-family: var(--serif);
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-align: center;
+}
+.gallery-card-body { display: flex; flex-direction: column; gap: 12px; }
+.gallery-name {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(20px, 2vw, 26px);
+  letter-spacing: 0;
+  color: var(--ink);
+  margin: 0;
+}
+.gallery-location {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: 0;
+}
+.gallery-years {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 4px 0 2px;
+}
+.year-chip {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  padding: 4px 14px;
+  border: 1px solid #e3e3e3;
+  border-radius: 100px;
+}
+.gallery-note {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: #555;
+  margin: 4px 0 0;
+  max-width: 540px;
+}
+
+/* Photographic record */
+.exhibition-photos { margin-top: 8px; }
+.exhibition-photos-title {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(20px, 2.2vw, 28px);
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--ink);
+  margin: 0 0 clamp(32px, 4vw, 56px);
+}
+.exhibition-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 2.5vw, 40px);
+}
+.exhibition-figure { margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.exhibition-image-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: #ffffff;
+}
+.exhibition-image-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .9s cubic-bezier(.22,.61,.36,1);
+}
+.exhibition-figure:hover .exhibition-image-wrap img { transform: scale(1.03); }
+.exhibition-caption {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  text-align: center;
+}
 
 /* Contact page — Jost headline (override the default text-page serif h1) */
 .contact-page .contact-title {
@@ -1071,6 +1330,15 @@ a { color: inherit; text-decoration: none; }
     height: 4px;
     bottom: -10px;
   }
+  /* Slightly taller on mobile (large painting) but still a thin band at the
+     line, light blur, no persistent glow. */
+  .site-header::after {
+    height: 48px;
+    -webkit-backdrop-filter: blur(1.5px);
+    backdrop-filter: blur(1.5px);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0) 100%);
+  }
 
   /* Mobile gallery — one painting per vertical scroll section. Subtle 1px
      hairline divider between successive cards (same premium grid feel as
@@ -1078,7 +1346,7 @@ a { color: inherit; text-decoration: none; }
   .gallery-wrap {
     padding: 24px 0 0;
     max-width: none;
-    background: #ececec;
+    background: #ffffff;
   }
   .gallery {
     grid-template-columns: 1fr !important;
@@ -1196,6 +1464,22 @@ a { color: inherit; text-decoration: none; }
   /* Show the mobile-only link, hide the desktop one. */
   .mobile-only  { display: block; }
   .desktop-only { display: none; }
+
+  /* Travel page — single column on phones. */
+  .travel-grid { grid-template-columns: 1fr; gap: 28px; }
+  .travel-hero { aspect-ratio: 3 / 2; }
+
+  /* Exhibitions page — stack gallery card head over body; 1-col photos. */
+  .gallery-card {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+    padding: 36px 18px;
+  }
+  .gallery-card-body { align-items: center; }
+  .gallery-years { justify-content: center; }
+  .gallery-note { text-align: center; }
+  .exhibition-grid { grid-template-columns: 1fr; gap: 24px; }
 
   /* Lightbox: leave a touch more room for the close button on small phones. */
   .lightbox-img { max-height: 82vh; }
