@@ -608,7 +608,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 400;
   /* Sized against the card width (container query): bigger paintings →
      bigger titles, smaller paintings → smaller titles. */
-  font-size: clamp(16px, 4.6cqi, 30px);
+  font-size: clamp(15px, 4.3cqi, 28px);
   letter-spacing: -0.005em;
   color: var(--ink);
   line-height: 1.15;
@@ -1097,10 +1097,10 @@ a { color: inherit; text-decoration: none; }
   .gallery .card .image-wrap {
     aspect-ratio: auto;
     width: 100%;
-    max-height: 62dvh;
+    max-height: 70dvh;
   }
   .gallery .card img {
-    max-height: 62dvh;
+    max-height: 70dvh;
     width: auto;
   }
   .card .image-wrap {
@@ -1119,8 +1119,8 @@ a { color: inherit; text-decoration: none; }
     margin-top: 28px;
     gap: 12px;
   }
-  /* Mobile order: title first, then pill. Title slightly smaller per spec. */
-  .card .title { order: 0; font-size: 20px; letter-spacing: 0.01em; line-height: 1.2; }
+  /* Mobile order: title first, then pill. */
+  .card .title { order: 0; font-size: 19px; letter-spacing: 0.01em; line-height: 1.2; }
   .card .pill  { order: 1; margin-top: 2px; }
 
   /* Mobile pre-home — swipeable carousel. Each painting fills the viewport
