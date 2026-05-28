@@ -195,7 +195,9 @@ function main() {
       category: categoryFromMedium(medium),
       availability,
       dimensions,
-      image: `/paintings/${safeName}`,
+      // Relative path (no leading slash) so it resolves against whatever base
+      // the site is served from — root locally, /kamiar-gajoum/ on GitHub Pages.
+      image: `paintings/${safeName}`,
       sourceImage: image,
       url,
     });

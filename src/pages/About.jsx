@@ -16,7 +16,7 @@ export default function About({ onOpenMenu }) {
         <h1 className="about-name">KAMIAR GAJOUM</h1>
         <figure className="about-portrait">
           <img
-            src="/portraits/kamiar.jpg"
+            src="portraits/kamiar.jpg"
             alt="Portrait of Kamiar Gajoum"
             loading="eager"
             onError={(e) => { e.currentTarget.style.display = 'none'; }}
