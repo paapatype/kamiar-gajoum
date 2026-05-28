@@ -10,6 +10,10 @@ export default function ArtworkDetail({ onOpenMenu }) {
   const navigate = useNavigate();
   const [filter, setFilter] = useState('all');
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  // Lightbox backdrop preview mode: 'dim' (default), 'white', or 'black'.
+  const [lightboxBg, setLightboxBg] = useState('dim');
+
+  const openLightbox = () => { setLightboxBg('dim'); setLightboxOpen(true); };
 
   const artwork = useMemo(() => artworks.find(a => a.slug === slug), [slug]);
 
@@ -85,7 +89,7 @@ export default function ArtworkDetail({ onOpenMenu }) {
           <button
             type="button"
             className="image-tap"
-            onClick={() => setLightboxOpen(true)}
+            onClick={openLightbox}
             aria-label={`Zoom ${artwork.title}`}
           >
             <img src={artwork.image} alt={artwork.title} loading="eager" />
@@ -143,7 +147,7 @@ export default function ArtworkDetail({ onOpenMenu }) {
       {lightboxOpen && createPortal(
         (
           <div
-            className="lightbox"
+            className={`lightbox lightbox--${lightboxBg}`}
             role="dialog"
             aria-modal="true"
             aria-label={artwork.title}
@@ -156,12 +160,29 @@ export default function ArtworkDetail({ onOpenMenu }) {
             >
               ×
             </button>
-            <img
-              className="lightbox-img"
-              src={artwork.image}
-              alt={artwork.title}
-              onClick={(e) => e.stopPropagation()}
-            />
+            <div className="lightbox-stage" onClick={(e) => e.stopPropagation()}>
+              <img className="lightbox-img" src={artwork.image} alt={artwork.title} />
+              <div className="lightbox-swatches" role="group" aria-label="Background preview">
+                <button
+                  className={`swatch swatch--dim ${lightboxBg === 'dim' ? 'active' : ''}`}
+                  onClick={() => setLightboxBg('dim')}
+                  aria-label="Dimmed background"
+                  aria-pressed={lightboxBg === 'dim'}
+                />
+                <button
+                  className={`swatch swatch--white ${lightboxBg === 'white' ? 'active' : ''}`}
+                  onClick={() => setLightboxBg('white')}
+                  aria-label="White background"
+                  aria-pressed={lightboxBg === 'white'}
+                />
+                <button
+                  className={`swatch swatch--black ${lightboxBg === 'black' ? 'active' : ''}`}
+                  onClick={() => setLightboxBg('black')}
+                  aria-label="Black background"
+                  aria-pressed={lightboxBg === 'black'}
+                />
+              </div>
+            </div>
           </div>
         ),
         document.body,

@@ -168,14 +168,17 @@ a { color: inherit; text-decoration: none; }
    half the middle. Right-aligned so all three lines share the same right
    edge (the middle line extends further left). */
 .burger {
-  width: 24px; height: 22px;
+  width: 24px; height: 20px;
   display: inline-flex; flex-direction: column; justify-content: center; align-items: flex-end;
-  gap: 5px;
+  gap: 6px;
 }
 .burger span {
   display: block;
-  height: 1px;
+  /* Uniform, crisp thickness for all three lines. */
+  height: 1.5px;
+  flex: 0 0 1.5px;
   background: var(--ink);
+  border-radius: 2px;
   transition: width .3s ease;
 }
 .burger span:nth-child(1) { width: 10px; }
@@ -186,8 +189,8 @@ a { color: inherit; text-decoration: none; }
 
 /* Density slider — gradient track + hollow ring thumb */
 .density {
-  --thumb: 13px;
-  --track-h: 1px;
+  --thumb: 17px;
+  --track-h: 1.5px;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -237,7 +240,9 @@ a { color: inherit; text-decoration: none; }
   width: var(--thumb);
   height: var(--thumb);
   border-radius: 50%;
-  background: transparent;
+  /* Opaque white fill so the track line never shows through the ring's
+     interior — reads as a clean hollow circle on the white page. */
+  background: #ffffff;
   border: 1.5px solid #9a9a9a;
   box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.18);
   /* Short transition so click-jumps feel smooth without lagging during drag. */
@@ -425,7 +430,11 @@ a { color: inherit; text-decoration: none; }
   padding: 60px clamp(24px, 4vw, 64px);
   animation: lightboxFade .35s ease both;
   cursor: zoom-out;
+  transition: background .4s ease;
 }
+/* Backdrop preview modes */
+.lightbox.lightbox--white { background: #ffffff; }
+.lightbox.lightbox--black { background: #000000; }
 @keyframes lightboxFade {
   from { opacity: 0; }
   to   { opacity: 1; }
@@ -440,25 +449,58 @@ a { color: inherit; text-decoration: none; }
   line-height: 1;
   cursor: pointer;
   opacity: 0.9;
-  transition: opacity .2s ease, transform .2s ease;
+  transition: opacity .2s ease, transform .2s ease, color .3s ease;
   z-index: 1;
 }
 .lightbox-close:hover { opacity: 1; transform: scale(1.1); }
+/* On a white backdrop the × needs to be dark to stay visible. */
+.lightbox--white .lightbox-close { color: #141414; }
+
+.lightbox-stage {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 22px;
+  cursor: default;
+  animation: lightboxRise .55s cubic-bezier(.22, .61, .36, 1) both;
+}
 .lightbox-img {
   max-width: 92vw;
-  max-height: 88vh;
+  max-height: 82vh;
   width: auto; height: auto;
   object-fit: contain;
   display: block;
-  cursor: default;
   /* Painting stays at full natural brightness — no filters, no overlay. */
   filter: none;
-  animation: lightboxRise .55s cubic-bezier(.22, .61, .36, 1) both;
 }
 @keyframes lightboxRise {
   from { transform: scale(0.94); opacity: 0; }
   to   { transform: scale(1);    opacity: 1; }
 }
+
+/* Background preview swatches beneath the painting — small circles with thin,
+   subtle borders. White / black / no-colour (dimmed default). */
+.lightbox-swatches {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px;
+}
+.lightbox-swatches .swatch {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(150, 150, 150, 0.55);
+  cursor: pointer;
+  padding: 0;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.lightbox-swatches .swatch--white { background: #ffffff; }
+.lightbox-swatches .swatch--black { background: #000000; }
+.lightbox-swatches .swatch--dim   { background: transparent; }
+.lightbox-swatches .swatch:hover { transform: scale(1.15); }
+/* Selected state — a soft ring around the active swatch. */
+.lightbox-swatches .swatch.active {
+  box-shadow: 0 0 0 1px rgba(160,160,160,0.5), 0 0 0 3px rgba(160,160,160,0.25);
+}
+/* Keep swatch borders visible whatever the backdrop is. */
+.lightbox--white .lightbox-swatches .swatch { border-color: rgba(0,0,0,0.25); }
+.lightbox--black .lightbox-swatches .swatch { border-color: rgba(255,255,255,0.4); }
 
 /* Page transitions — opacity only. (Avoid a lingering transform on .page,
    which would make position:fixed descendants like the lightbox resolve
@@ -513,6 +555,14 @@ a { color: inherit; text-decoration: none; }
 .gallery[data-cols="2"] .card:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .gallery[data-cols="3"] .card:last-child:nth-child(3n+1) { grid-column: 1 / -1; }
 .gallery[data-cols="4"] .card:last-child:nth-child(4n+1) { grid-column: 1 / -1; }
+
+/* When an orphan card spans the full width (above), keep its PAINTING the
+   same size as a normal single-column card — centered — so the full-width
+   span fills the row (no grey gap) without blowing the image up to viewport
+   height. */
+.gallery[data-cols="2"] .card:last-child:nth-child(odd) .image-wrap { max-width: 50%; margin-inline: auto; }
+.gallery[data-cols="3"] .card:last-child:nth-child(3n+1) .image-wrap { max-width: 33.333%; margin-inline: auto; }
+.gallery[data-cols="4"] .card:last-child:nth-child(4n+1) .image-wrap { max-width: 25%; margin-inline: auto; }
 
 /* Filter fade-to-white: gallery opacity goes to 0 with a soft blur. React
    swaps the rendered paintings mid-fade so the in-and-out cycle reads as a
@@ -1415,25 +1465,31 @@ a { color: inherit; text-decoration: none; }
 
   .detail {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 16px;
     padding-top: 24px;
   }
-  .detail .image-side { min-height: auto; }
-  .detail .image-side img { max-height: 60vh; }
+  .detail .image-side { min-height: auto; gap: 0; }
+  /* Smaller painting on mobile so the title sits within view right after it
+     — no awkward gap before the name appears. */
+  .detail .image-side img { max-height: 52vh; }
+  /* Hide the desktop in-image gallery link on mobile (the mobile one lives
+     at the bottom of the info column). Higher specificity than the base
+     .image-side-link rule so it actually wins. */
+  .detail .image-side .image-side-link { display: none; }
   .detail .info-side {
     align-items: center;
     text-align: center;
     max-width: none;
-    gap: 18px;
+    gap: 14px;
     min-height: auto;
   }
   /* Mobile detail order: pill → title → meta → dimensions → (gap) → view gallery */
   .detail .info-side .pill          { order: 0; margin: 0 auto; }
-  .detail .info-side h1             { order: 1; font-size: 30px; letter-spacing: -0.01em; line-height: 1.15; }
-  .detail .info-side .caption       { order: 2; align-items: center; gap: 4px; margin-top: -6px; }
+  .detail .info-side h1             { order: 1; font-size: 28px; letter-spacing: -0.01em; line-height: 1.15; }
+  .detail .info-side .caption       { order: 2; align-items: center; gap: 4px; margin-top: -4px; }
   .detail .info-side .caption-line  { font-size: 11px; }
   .detail .info-side .caption-dim   { font-size: 11px; }
-  .detail .info-side .info-side-link{ order: 3; margin-top: 28px; }
+  .detail .info-side .info-side-link{ order: 3; margin-top: 24px; }
 
   /* Show the mobile-only link, hide the desktop one. */
   .mobile-only  { display: block; }
