@@ -66,7 +66,6 @@ const CURATION = {
   'Live sketching NYC.JPG':                    { region: 'United States', place: 'New York City' },
 
   'Live Painting in Venice.JPG':               { region: 'Europe & The Mediterranean', place: 'Venice' },
-  "Live sketching St. Mark's Square.JPG":      { region: 'Europe & The Mediterranean', place: "St Mark's Square, Venice" },
   'Sketching Piazza San Marco Venice.JPG':     { region: 'Europe & The Mediterranean', place: 'Piazza San Marco, Venice' },
   'Sketching Piazza San Marco.JPG':            { region: 'Europe & The Mediterranean', place: 'Piazza San Marco, Venice' },
   'Sketching Carneval di Venezia.JPG':         { region: 'Europe & The Mediterranean', place: 'Carnevale di Venezia' },
@@ -75,7 +74,7 @@ const CURATION = {
 };
 
 // Intro/hero photo (no specific place caption).
-const HERO = 'Kamiar steps into Classice$ Impressionism art.JPG';
+const HERO = "Live sketching St. Mark's Square.JPG";
 
 function slugify(s) {
   return s.normalize('NFKD').replace(/[̀-ͯ]/g, '')

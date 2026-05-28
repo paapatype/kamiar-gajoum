@@ -1,5 +1,5 @@
 {
-  "hero": "travel/kamiar-steps-into-classice-impressionism-art.jpg",
+  "hero": "travel/live-sketching-st-mark-s-square.jpg",
   "regions": [
     {
       "region": "Canada",
@@ -96,10 +96,6 @@
         {
           "src": "travel/live-painting-in-venice.jpg",
           "place": "Venice"
-        },
-        {
-          "src": "travel/live-sketching-st-mark-s-square.jpg",
-          "place": "St Mark's Square, Venice"
         },
         {
           "src": "travel/sketching-piazza-san-marco-venice.jpg",
