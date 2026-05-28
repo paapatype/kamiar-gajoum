@@ -1,8 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header.jsx';
+import portraits from '../data/portraits.json';
+
+// How long each photo holds before cross-fading to the next.
+const SLIDE_MS = 15000;
 
 export default function About({ onOpenMenu }) {
   const [filter, setFilter] = useState('all');
+  // Track both the active slide and the one it's fading from. The outgoing
+  // photo stays fully opaque *beneath* the incoming one (which fades in on
+  // top), so the frame is never empty mid-transition — a seamless, premium
+  // cross-fade with no flash through the white background.
+  const [[active, prev], setSlide] = useState([0, -1]);
+
+  useEffect(() => {
+    if (portraits.length <= 1) return;
+    const id = setInterval(() => {
+      setSlide(([a]) => [(a + 1) % portraits.length, a]);
+    }, SLIDE_MS);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <div className="page fade-enter is-about">
       <Header
@@ -15,12 +33,17 @@ export default function About({ onOpenMenu }) {
         <span className="eyebrow">About</span>
         <h1 className="about-name">KAMIAR GAJOUM</h1>
         <figure className="about-portrait">
-          <img
-            src="portraits/_B3R4947.jpg"
-            alt="Portrait of Kamiar Gajoum"
-            loading="eager"
-            onError={(e) => { e.currentTarget.style.display = 'none'; }}
-          />
+          {portraits.map((src, i) => (
+            <img
+              key={src}
+              className={`about-slide ${i === active ? 'active' : i === prev ? 'prev' : ''}`}
+              src={src}
+              alt="Kamiar Gajoum"
+              loading={i === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+              aria-hidden={i === active ? undefined : true}
+            />
+          ))}
         </figure>
         <div className="about-body">
           <p>

@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "data": "node scripts/build-artwork-data.mjs && node scripts/build-travel-data.mjs && node scripts/build-exhibitions-data.mjs",
+    "data": "node scripts/build-artwork-data.mjs && node scripts/build-travel-data.mjs && node scripts/build-exhibitions-data.mjs && node scripts/build-portraits-data.mjs",
     "dev": "npm run data && vite",
     "build": "vite build",
     "build:full": "npm run data && vite build",
