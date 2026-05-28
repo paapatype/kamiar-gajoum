@@ -98,22 +98,6 @@ a { color: inherit; text-decoration: none; }
   padding: var(--header-pad-y) var(--header-pad-x);
   border-bottom: 1px solid transparent;
 }
-/* Thin soft-fade band right at the header's bottom edge. Content stays crisp
-   until it scrolls up across the line, where it dissolves over a short
-   distance. Kept shallow with a light blur so there's no persistent glow. */
-.site-header::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0;
-  top: 100%;
-  height: 34px;
-  pointer-events: none;
-  background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
-  -webkit-backdrop-filter: blur(1.5px);
-  backdrop-filter: blur(1.5px);
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0) 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0) 100%);
-}
 .site-header .logo {
   font-family: var(--serif);
   font-size: var(--wordmark-size);
@@ -1329,15 +1313,6 @@ a { color: inherit; text-decoration: none; }
     width: 32px;
     height: 4px;
     bottom: -10px;
-  }
-  /* Slightly taller on mobile (large painting) but still a thin band at the
-     line, light blur, no persistent glow. */
-  .site-header::after {
-    height: 48px;
-    -webkit-backdrop-filter: blur(1.5px);
-    backdrop-filter: blur(1.5px);
-    -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0) 100%);
-    mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0) 100%);
   }
 
   /* Mobile gallery — one painting per vertical scroll section. Subtle 1px
