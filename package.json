@@ -9,7 +9,7 @@
     "build": "vite build",
     "build:full": "npm run data && vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist -t true"
+    "deploy": "npm run build && gh-pages -d dist -t"
   },
   "dependencies": {
     "react": "^18.3.1",
