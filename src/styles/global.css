@@ -128,7 +128,7 @@ a { color: inherit; text-decoration: none; }
   transition: color .25s ease;
 }
 /* Sliding active indicator — one element that animates left to the active
-   button. A tiny blur softens the edges so it reads as premium and quiet. */
+   button. Clean, sharp rounded bar (no blur). */
 .site-header .nav .nav-indicator {
   position: absolute;
   bottom: -10px;
@@ -138,14 +138,13 @@ a { color: inherit; text-decoration: none; }
   background: #d4d4d4;
   border-radius: 999px;
   transform: translateX(-50%);
-  filter: blur(0.6px);
   opacity: 0;
   transition:
     left .55s cubic-bezier(.22, .61, .36, 1),
     opacity .25s ease;
   pointer-events: none;
 }
-.site-header .nav .nav-indicator.on { opacity: 0.95; }
+.site-header .nav .nav-indicator.on { opacity: 1; }
 .site-header .right {
   display: flex;
   align-items: center;
