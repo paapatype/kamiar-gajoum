@@ -1545,9 +1545,16 @@ a { color: inherit; text-decoration: none; }
   .lightbox-img { max-height: 82vh; }
 
   .site-footer {
-    grid-template-columns: 1fr;
     gap: 14px;
     text-align: center;
+  }
+  /* Stack the footer row vertically on phones — the category nav sits right
+     above the big KAMIAR GAJOUM logo (no room for nav + name + menu on one
+     line). The grid is collapsed to a single column so the three items stack
+     in DOM order: nav → name → menu button. */
+  .site-footer .footer-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
   .site-footer .left, .site-footer .right { justify-content: center; }
 
