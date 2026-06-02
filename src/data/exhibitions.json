@@ -11,6 +11,11 @@
       "logo": null
     },
     {
+      "gallery": "Japan Creative Arts Gallery",
+      "location": "Tokyo, Japan",
+      "logo": null
+    },
+    {
       "gallery": "Gainsborough Galleries",
       "location": "Calgary, AB",
       "logo": "galleries/gainsborough-galleries.png"
@@ -84,6 +89,7 @@
       "year": "2020",
       "items": [
         {
+          "venue": "Japan Creative Arts Gallery",
           "location": "Tokyo, Japan"
         }
       ]

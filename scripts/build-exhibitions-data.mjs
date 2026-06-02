@@ -32,6 +32,12 @@ const GALLERIES = [
     logo: null,
   },
   {
+    // Tokyo gallery that hosted the 2020 show; closed during the COVID period.
+    gallery: 'Japan Creative Arts Gallery',
+    location: 'Tokyo, Japan',
+    logo: null,
+  },
+  {
     gallery: 'Gainsborough Galleries',
     location: 'Calgary, AB',
     logo: 'galleries/gainsborough-galleries.png',
@@ -59,7 +65,7 @@ const HISTORY = [
   { year: '2023', items: [ { venue: 'Vancouver Fine Art Gallery', location: 'Vancouver, BC' } ] },
   { year: '2022', items: [ { venue: 'Vancouver Fine Art Gallery', location: 'Vancouver, BC' } ] },
   { year: '2021', items: [ { venue: 'Vancouver Fine Art Gallery', location: 'Vancouver, BC' } ] },
-  { year: '2020', items: [ { location: 'Tokyo, Japan' } ] },
+  { year: '2020', items: [ { venue: 'Japan Creative Arts Gallery', location: 'Tokyo, Japan' } ] },
   { year: '2019', items: [ { venue: 'LeSoleil Fine Art Gallery', location: 'Vancouver, BC' } ] },
   { year: '2018', items: [ { venue: 'LeSoleil Fine Art Gallery', location: 'Vancouver, BC' } ] },
   { year: '2017', items: [
