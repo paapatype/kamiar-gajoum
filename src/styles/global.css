@@ -653,7 +653,7 @@ a { color: inherit; text-decoration: none; }
   background: #fff;
   order: 0;
 }
-.card .pill.sold { color: #b03a2e; border-color: #f0dcd9; }
+.card .pill.sold { color: #b03a2e; border-color: #f0dcd9; text-transform: uppercase; letter-spacing: 0.08em; }
 .card .title {
   font-family: var(--sans);
   font-weight: 400;
@@ -731,7 +731,7 @@ a { color: inherit; text-decoration: none; }
   color: #9a9a9a;
   width: max-content;
 }
-.detail .info-side .pill.sold { color: #b03a2e; border-color: #ecd6d3; }
+.detail .info-side .pill.sold { color: #b03a2e; border-color: #ecd6d3; text-transform: uppercase; letter-spacing: 0.08em; }
 .detail .info-side h1 {
   font-family: var(--sans);
   font-weight: 400;
@@ -827,7 +827,7 @@ a { color: inherit; text-decoration: none; }
   color: #a8a8a8;
   background: #fff;
 }
-.more-gallery .more-pill.sold { color: #b03a2e; border-color: #f0dcd9; }
+.more-gallery .more-pill.sold { color: #b03a2e; border-color: #f0dcd9; text-transform: uppercase; letter-spacing: 0.08em; }
 .more-gallery .more-title {
   font-family: var(--sans);
   font-weight: 400;
