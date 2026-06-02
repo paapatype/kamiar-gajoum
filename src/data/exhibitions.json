@@ -2,32 +2,187 @@
   "galleries": [
     {
       "gallery": "Vancouver Fine Art Gallery",
-      "location": "Vancouver, BC, Canada",
-      "logo": "galleries/vancouver-fine-art-gallery.png",
-      "years": [
-        "2021",
-        "2022",
-        "2023"
-      ],
-      "note": "Permanent representation — recurring solo and group exhibitions across three consecutive years."
+      "location": "Vancouver, BC",
+      "logo": "galleries/vancouver-fine-art-gallery.png"
     },
     {
-      "gallery": "Japan Creative Arts Gallery",
-      "location": "Tokyo, Japan",
-      "logo": null,
-      "years": [
-        "2020"
-      ],
-      "note": "A featured exhibition introducing the work to collectors in Japan."
+      "gallery": "LeSoleil Fine Art Gallery",
+      "location": "Vancouver, BC",
+      "logo": null
     },
     {
-      "gallery": "Le Soleil Gallery",
-      "location": "Canada",
-      "logo": null,
-      "years": [
-        "2017"
-      ],
-      "note": "A solo showing of European and live-painted street scenes."
+      "gallery": "Gainsborough Galleries",
+      "location": "Calgary, AB",
+      "logo": "galleries/gainsborough-galleries.png"
+    },
+    {
+      "gallery": "The Plaza Galleries",
+      "location": "Whistler, BC",
+      "logo": "galleries/plaza-galleries.png"
+    }
+  ],
+  "history": [
+    {
+      "year": "2026",
+      "items": [
+        {
+          "venue": "Vancouver Fine Art Gallery",
+          "location": "Vancouver, BC",
+          "note": "“FIFA”"
+        }
+      ]
+    },
+    {
+      "year": "2025",
+      "items": [
+        {
+          "venue": "Vancouver Fine Art Gallery",
+          "location": "Vancouver, BC"
+        },
+        {
+          "location": "Tokyo, Japan"
+        }
+      ]
+    },
+    {
+      "year": "2024",
+      "items": [
+        {
+          "venue": "Vancouver Fine Art Gallery",
+          "location": "Vancouver, BC"
+        }
+      ]
+    },
+    {
+      "year": "2023",
+      "items": [
+        {
+          "venue": "Vancouver Fine Art Gallery",
+          "location": "Vancouver, BC"
+        }
+      ]
+    },
+    {
+      "year": "2022",
+      "items": [
+        {
+          "venue": "Vancouver Fine Art Gallery",
+          "location": "Vancouver, BC"
+        }
+      ]
+    },
+    {
+      "year": "2021",
+      "items": [
+        {
+          "venue": "Vancouver Fine Art Gallery",
+          "location": "Vancouver, BC"
+        }
+      ]
+    },
+    {
+      "year": "2020",
+      "items": [
+        {
+          "location": "Tokyo, Japan"
+        }
+      ]
+    },
+    {
+      "year": "2019",
+      "items": [
+        {
+          "venue": "LeSoleil Fine Art Gallery",
+          "location": "Vancouver, BC"
+        }
+      ]
+    },
+    {
+      "year": "2018",
+      "items": [
+        {
+          "venue": "LeSoleil Fine Art Gallery",
+          "location": "Vancouver, BC"
+        }
+      ]
+    },
+    {
+      "year": "2017",
+      "items": [
+        {
+          "location": "Vancouver, BC"
+        },
+        {
+          "venue": "Gainsborough Galleries",
+          "location": "Calgary, AB"
+        }
+      ]
+    },
+    {
+      "year": "2016",
+      "items": [
+        {
+          "venue": "The Plaza Galleries",
+          "location": "Whistler, BC"
+        },
+        {
+          "venue": "Gainsborough Galleries",
+          "location": "Calgary, AB"
+        },
+        {
+          "location": "St Albans, UK"
+        }
+      ]
+    },
+    {
+      "year": "2015",
+      "items": [
+        {
+          "venue": "The Plaza Galleries",
+          "location": "Whistler, BC"
+        },
+        {
+          "venue": "Gainsborough Galleries",
+          "location": "Calgary, AB"
+        },
+        {
+          "location": "Maui, Hawaii, USA"
+        }
+      ]
+    },
+    {
+      "year": "2014",
+      "items": [
+        {
+          "venue": "The Plaza Galleries",
+          "location": "Whistler, BC"
+        },
+        {
+          "venue": "Gainsborough Galleries",
+          "location": "Calgary, AB"
+        },
+        {
+          "location": "Maui, Hawaii, USA"
+        }
+      ]
+    },
+    {
+      "year": "2013",
+      "items": [
+        {
+          "venue": "The Plaza Galleries",
+          "location": "Whistler, BC"
+        }
+      ]
+    },
+    {
+      "year": "2012",
+      "items": [
+        {
+          "venue": "The Plaza Galleries",
+          "location": "Whistler, BC"
+        }
+      ]
     }
   ],
   "photos": [

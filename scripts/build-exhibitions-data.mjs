@@ -16,30 +16,73 @@ const SRC_DIR = path.join(PROJECT_ROOT, 'Exhibition photographs');
 const OUT_DIR = path.join(ROOT, 'public', 'exhibitions');
 const OUT_JSON = path.join(ROOT, 'src', 'data', 'exhibitions.json');
 
-// Galleries that have represented / hosted Kamiar, grouped with their years.
-// (Source: kamiargajoum.art/blog + the labelled exhibition photographs.)
+// Galleries that have represented / hosted Kamiar. Shown as a logo strip at the
+// top of the page (the per-year detail lives in HISTORY below). Logos are
+// self-hosted PNGs in public/galleries/; a null logo falls back to a styled
+// wordmark. Ordered most-recent-relationship first.
 const GALLERIES = [
   {
     gallery: 'Vancouver Fine Art Gallery',
-    location: 'Vancouver, BC, Canada',
+    location: 'Vancouver, BC',
     logo: 'galleries/vancouver-fine-art-gallery.png',
-    years: ['2021', '2022', '2023'],
-    note: 'Permanent representation — recurring solo and group exhibitions across three consecutive years.',
   },
   {
-    gallery: 'Japan Creative Arts Gallery',
-    location: 'Tokyo, Japan',
+    gallery: 'LeSoleil Fine Art Gallery',
+    location: 'Vancouver, BC',
     logo: null,
-    years: ['2020'],
-    note: 'A featured exhibition introducing the work to collectors in Japan.',
   },
   {
-    gallery: 'Le Soleil Gallery',
-    location: 'Canada',
-    logo: null,
-    years: ['2017'],
-    note: 'A solo showing of European and live-painted street scenes.',
+    gallery: 'Gainsborough Galleries',
+    location: 'Calgary, AB',
+    logo: 'galleries/gainsborough-galleries.png',
   },
+  {
+    gallery: 'The Plaza Galleries',
+    location: 'Whistler, BC',
+    logo: 'galleries/plaza-galleries.png',
+  },
+];
+
+// Full exhibition history, reverse-chronological. Each year lists the venues /
+// locations where the work was shown that year. `venue` is the gallery name (if
+// known); `note` flags a titled show. Some early/overseas entries are recorded
+// by location only, exactly as documented.
+const HISTORY = [
+  { year: '2026', items: [
+    { venue: 'Vancouver Fine Art Gallery', location: 'Vancouver, BC', note: '“FIFA”' },
+  ] },
+  { year: '2025', items: [
+    { venue: 'Vancouver Fine Art Gallery', location: 'Vancouver, BC' },
+    { location: 'Tokyo, Japan' },
+  ] },
+  { year: '2024', items: [ { venue: 'Vancouver Fine Art Gallery', location: 'Vancouver, BC' } ] },
+  { year: '2023', items: [ { venue: 'Vancouver Fine Art Gallery', location: 'Vancouver, BC' } ] },
+  { year: '2022', items: [ { venue: 'Vancouver Fine Art Gallery', location: 'Vancouver, BC' } ] },
+  { year: '2021', items: [ { venue: 'Vancouver Fine Art Gallery', location: 'Vancouver, BC' } ] },
+  { year: '2020', items: [ { location: 'Tokyo, Japan' } ] },
+  { year: '2019', items: [ { venue: 'LeSoleil Fine Art Gallery', location: 'Vancouver, BC' } ] },
+  { year: '2018', items: [ { venue: 'LeSoleil Fine Art Gallery', location: 'Vancouver, BC' } ] },
+  { year: '2017', items: [
+    { location: 'Vancouver, BC' },
+    { venue: 'Gainsborough Galleries', location: 'Calgary, AB' },
+  ] },
+  { year: '2016', items: [
+    { venue: 'The Plaza Galleries', location: 'Whistler, BC' },
+    { venue: 'Gainsborough Galleries', location: 'Calgary, AB' },
+    { location: 'St Albans, UK' },
+  ] },
+  { year: '2015', items: [
+    { venue: 'The Plaza Galleries', location: 'Whistler, BC' },
+    { venue: 'Gainsborough Galleries', location: 'Calgary, AB' },
+    { location: 'Maui, Hawaii, USA' },
+  ] },
+  { year: '2014', items: [
+    { venue: 'The Plaza Galleries', location: 'Whistler, BC' },
+    { venue: 'Gainsborough Galleries', location: 'Calgary, AB' },
+    { location: 'Maui, Hawaii, USA' },
+  ] },
+  { year: '2013', items: [ { venue: 'The Plaza Galleries', location: 'Whistler, BC' } ] },
+  { year: '2012', items: [ { venue: 'The Plaza Galleries', location: 'Whistler, BC' } ] },
 ];
 
 // Curated photographs. Captions are only set for photos whose location is
@@ -94,8 +137,9 @@ function main() {
     photos.push({ src: `exhibitions/${safe}`, caption });
   }
 
-  fs.writeFileSync(OUT_JSON, JSON.stringify({ galleries: GALLERIES, photos }, null, 2) + '\n');
-  console.log(`Exhibitions: ${GALLERIES.length} galleries, ${photos.length} photos copied`);
+  fs.writeFileSync(OUT_JSON, JSON.stringify({ galleries: GALLERIES, history: HISTORY, photos }, null, 2) + '\n');
+  const shows = HISTORY.reduce((n, y) => n + y.items.length, 0);
+  console.log(`Exhibitions: ${GALLERIES.length} galleries, ${HISTORY.length} years (${shows} entries), ${photos.length} photos copied`);
   if (missing.length) console.log('Missing source files:', missing);
 }
 

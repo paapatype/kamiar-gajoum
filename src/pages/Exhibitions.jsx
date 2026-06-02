@@ -26,30 +26,49 @@ export default function Exhibitions({ onOpenMenu }) {
           </p>
         </header>
 
-        {/* Galleries grouped — each shown once with the years it hosted him. */}
-        <section className="gallery-list">
-          {data.galleries.map((g) => (
-            <div className="gallery-card" key={g.gallery}>
-              <div className="gallery-card-head">
+        {/* Galleries that have represented / hosted the work — a logo strip.
+            Logos render muted and lift to full colour on hover; a gallery with
+            no logo file falls back to a styled wordmark. */}
+        {data.galleries.length > 0 && (
+          <section className="gallery-strip" aria-label="Represented by">
+            {data.galleries.map((g) => (
+              <div className="gallery-mark" key={g.gallery}>
                 {g.logo ? (
                   <img className="gallery-logo" src={g.logo} alt={`${g.gallery} logo`} loading="lazy" />
                 ) : (
                   <span className="gallery-logo-fallback">{g.gallery}</span>
                 )}
+                <span className="gallery-mark-meta">
+                  <span className="gallery-mark-name">{g.gallery}</span>
+                  {g.location && <span className="gallery-mark-loc">{g.location}</span>}
+                </span>
               </div>
-              <div className="gallery-card-body">
-                <h2 className="gallery-name">{g.gallery}</h2>
-                {g.location && <p className="gallery-location">{g.location}</p>}
-                <div className="gallery-years" aria-label="Years hosted">
-                  {g.years.map((y) => (
-                    <span className="year-chip" key={y}>{y}</span>
-                  ))}
-                </div>
-                {g.note && <p className="gallery-note">{g.note}</p>}
-              </div>
-            </div>
-          ))}
-        </section>
+            ))}
+          </section>
+        )}
+
+        {/* Full reverse-chronological exhibition history. */}
+        {data.history && data.history.length > 0 && (
+          <section className="exhibition-history">
+            <h2 className="exhibition-history-title">Selected Exhibitions</h2>
+            <ol className="history-list">
+              {data.history.map((row) => (
+                <li className="history-row" key={row.year}>
+                  <span className="history-year">{row.year}</span>
+                  <ul className="history-venues">
+                    {row.items.map((it, i) => (
+                      <li className="history-venue" key={i}>
+                        {it.venue && <span className="venue-name">{it.venue}</span>}
+                        {it.location && <span className="venue-loc">{it.location}</span>}
+                        {it.note && <span className="venue-note">{it.note}</span>}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
 
         {/* Photographic record of openings and installations. */}
         {data.photos.length > 0 && (

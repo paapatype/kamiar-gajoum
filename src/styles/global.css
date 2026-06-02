@@ -1130,82 +1130,122 @@ a { color: inherit; text-decoration: none; }
   margin: 0;
 }
 
-/* Gallery cards — one per gallery, with the years it hosted Kamiar shown as
-   chips. This is the "smart" grouping: a venue that hosted across multiple
-   years reads as a single ongoing relationship, not blank year rows. */
-.gallery-list {
-  display: flex; flex-direction: column;
-  gap: 1px;
-  background: #ececec;
-  border-top: 1px solid #ececec;
-  border-bottom: 1px solid #ececec;
-  margin-bottom: clamp(64px, 8vw, 110px);
-}
-.gallery-card {
-  background: #fff;
+/* Gallery logo strip — the venues that have represented / hosted the work.
+   Logos sit in equal-height cells, rendered muted+greyscale for a cohesive set
+   (their brand colours vary), lifting to full colour on hover. */
+.gallery-strip {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  align-items: center;
-  gap: clamp(28px, 4vw, 64px);
-  padding: clamp(32px, 4vw, 56px) clamp(20px, 3vw, 40px);
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 48px);
+  align-items: start;
+  padding: clamp(8px, 2vw, 24px) 0 clamp(40px, 5vw, 72px);
+  margin-bottom: clamp(48px, 6vw, 88px);
+  border-bottom: 1px solid var(--line);
 }
-.gallery-card-head {
-  display: flex; align-items: center; justify-content: center;
-  min-height: 84px;
-}
-.gallery-logo {
-  max-width: 240px;
-  max-height: 90px;
-  width: auto; height: auto;
-  object-fit: contain;
-}
-.gallery-logo-fallback {
-  font-family: var(--serif);
-  font-size: 22px;
-  letter-spacing: 0.04em;
-  color: var(--ink);
+.gallery-mark {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 16px;
   text-align: center;
 }
-.gallery-card-body { display: flex; flex-direction: column; gap: 12px; }
-.gallery-name {
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: clamp(20px, 2vw, 26px);
-  letter-spacing: 0;
-  color: var(--ink);
-  margin: 0;
+.gallery-mark .gallery-logo {
+  height: 54px;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+  /* Unify the differently-coloured logos; reveal true colour on hover. */
+  filter: grayscale(1);
+  opacity: 0.62;
+  transition: filter .35s ease, opacity .35s ease;
 }
-.gallery-location {
+.gallery-mark:hover .gallery-logo { filter: grayscale(0); opacity: 1; }
+.gallery-mark .gallery-logo-fallback {
+  display: flex; align-items: center; justify-content: center;
+  height: 54px;
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.6vw, 21px);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  opacity: 0.8;
+  transition: opacity .35s ease;
+}
+.gallery-mark:hover .gallery-logo-fallback { opacity: 1; }
+.gallery-mark-meta { display: flex; flex-direction: column; gap: 3px; }
+.gallery-mark-name {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: 12px;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+}
+.gallery-mark-loc {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 10.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-mute);
-  margin: 0;
 }
-.gallery-years {
-  display: flex; flex-wrap: wrap; gap: 8px;
-  margin: 4px 0 2px;
-}
-.year-chip {
+
+/* Selected Exhibitions — reverse-chronological list. Serif year on the left,
+   venues stacked on the right, hairline rule between years. */
+.exhibition-history { margin-bottom: clamp(64px, 8vw, 110px); }
+.exhibition-history-title {
   font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(20px, 2.2vw, 28px);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 clamp(24px, 3vw, 40px);
+  text-align: center;
+}
+.history-list { list-style: none; margin: 0; padding: 0; }
+.history-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: clamp(20px, 4vw, 64px);
+  align-items: baseline;
+  padding: clamp(18px, 2vw, 26px) 0;
+  border-top: 1px solid var(--line);
+}
+.history-row:last-child { border-bottom: 1px solid var(--line); }
+.history-year {
+  font-family: var(--serif);
   font-weight: 400;
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  color: var(--ink-soft);
-  padding: 4px 14px;
-  border: 1px solid #e3e3e3;
-  border-radius: 100px;
+  font-size: clamp(24px, 2.6vw, 34px);
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  line-height: 1;
 }
-.gallery-note {
+.history-venues { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.history-venue {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px;
   font-family: var(--sans);
-  font-weight: 300;
-  font-size: 13.5px;
-  line-height: 1.8;
-  color: #555;
-  margin: 4px 0 0;
-  max-width: 540px;
+}
+.history-venue .venue-name {
+  font-weight: 400;
+  font-size: clamp(15px, 1.5vw, 17px);
+  color: var(--ink);
+}
+.history-venue .venue-loc {
+  font-weight: 400;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+/* A location-only entry (no venue) reads as the primary line, not a tag. */
+.history-venue:not(:has(.venue-name)) .venue-loc {
+  font-size: clamp(15px, 1.5vw, 17px);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--ink-soft);
+}
+.history-venue .venue-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-soft);
 }
 
 /* Photographic record */
@@ -1529,16 +1569,14 @@ a { color: inherit; text-decoration: none; }
   .travel-figure:only-child { max-width: none; }
   .travel-hero { aspect-ratio: 3 / 2; }
 
-  /* Exhibitions page — stack gallery card head over body; 1-col photos. */
-  .gallery-card {
+  /* Exhibitions page — 2-up logo strip; stack each year's label over venues. */
+  .gallery-strip { grid-template-columns: repeat(2, 1fr); gap: 36px 20px; }
+  .history-row {
     grid-template-columns: 1fr;
-    gap: 20px;
-    text-align: center;
-    padding: 36px 18px;
+    gap: 10px;
+    align-items: start;
   }
-  .gallery-card-body { align-items: center; }
-  .gallery-years { justify-content: center; }
-  .gallery-note { text-align: center; }
+  .history-year { font-size: 22px; }
   .exhibition-grid { grid-template-columns: 1fr; gap: 24px; }
 
   /* Lightbox: leave a touch more room for the close button on small phones. */
